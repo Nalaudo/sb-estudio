@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  db:
+    container_name: 'sb-studio-db'
+    image: postgis/postgis:15-3.4-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5433:5432'
+    volumes:
+      - sb-studio-db:/var/lib/postgresql/data
+
+volumes:
+  sb-studio-db:
+    name: sb-studio-db
+    driver: local
